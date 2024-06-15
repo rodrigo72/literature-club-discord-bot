@@ -1,0 +1,1225 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> All
+Rule 1     All -> Suggestions
+Rule 2     All -> Text Suggestions
+Rule 3     Suggestions -> Suggestions Suggestion
+Rule 4     Suggestions -> Suggestion
+Rule 5     Suggestion -> Title OtherElements
+Rule 6     OtherElements -> OtherElements OtherElement
+Rule 7     OtherElements -> <empty>
+Rule 8     OtherElement -> Author
+Rule 9     OtherElement -> Description
+Rule 10    OtherElement -> Genre
+Rule 11    OtherElement -> Date
+Rule 12    OtherElement -> Notes
+Rule 13    OtherElement -> Reviews
+Rule 14    OtherElement -> Links
+Rule 15    OtherElement -> Download
+Rule 16    OtherElement -> Pages
+Rule 17    OtherElement -> Goodreads
+Rule 18    OtherElement -> Wikipedia
+Rule 19    OtherElement -> Quotes
+Rule 20    Title -> TITLE SEMICOLON Text
+Rule 21    Author -> AUTHOR SEMICOLON Text
+Rule 22    Description -> DESCRIPTION SEMICOLON Text
+Rule 23    Genre -> GENRE SEMICOLON Text
+Rule 24    Date -> DATE SEMICOLON Text
+Rule 25    Notes -> NOTES SEMICOLON Text
+Rule 26    Reviews -> REVIEWS SEMICOLON Text
+Rule 27    Links -> LINKS SEMICOLON Text
+Rule 28    Download -> DOWNLOAD SEMICOLON Text
+Rule 29    Pages -> PAGES SEMICOLON Text
+Rule 30    Goodreads -> GOODREADS SEMICOLON Text
+Rule 31    Wikipedia -> WIKIPEDIA SEMICOLON Text
+Rule 32    Quotes -> QUOTES SEMICOLON Text
+Rule 33    Text -> Text TEXT
+Rule 34    Text -> <empty>
+
+Terminals, with rules where they appear
+
+AUTHOR               : 21
+DATE                 : 24
+DESCRIPTION          : 22
+DOWNLOAD             : 28
+GENRE                : 23
+GOODREADS            : 30
+LINKS                : 27
+NOTES                : 25
+PAGES                : 29
+QUOTES               : 32
+REVIEWS              : 26
+SEMICOLON            : 20 21 22 23 24 25 26 27 28 29 30 31 32
+TEXT                 : 33
+TITLE                : 20
+WIKIPEDIA            : 31
+error                : 
+
+Nonterminals, with rules where they appear
+
+All                  : 0
+Author               : 8
+Date                 : 11
+Description          : 9
+Download             : 15
+Genre                : 10
+Goodreads            : 17
+Links                : 14
+Notes                : 12
+OtherElement         : 6
+OtherElements        : 5 6
+Pages                : 16
+Quotes               : 19
+Reviews              : 13
+Suggestion           : 3 4
+Suggestions          : 1 2 3
+Text                 : 2 20 21 22 23 24 25 26 27 28 29 30 31 32 33
+Title                : 5
+Wikipedia            : 18
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . All
+    (1) All -> . Suggestions
+    (2) All -> . Text Suggestions
+    (3) Suggestions -> . Suggestions Suggestion
+    (4) Suggestions -> . Suggestion
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+    (5) Suggestion -> . Title OtherElements
+    (20) Title -> . TITLE SEMICOLON Text
+
+  ! shift/reduce conflict for TITLE resolved as shift
+    TEXT            reduce using rule 34 (Text -> .)
+    TITLE           shift and go to state 6
+
+  ! TITLE           [ reduce using rule 34 (Text -> .) ]
+
+    All                            shift and go to state 1
+    Suggestions                    shift and go to state 2
+    Text                           shift and go to state 3
+    Suggestion                     shift and go to state 4
+    Title                          shift and go to state 5
+
+state 1
+
+    (0) S' -> All .
+
+
+
+state 2
+
+    (1) All -> Suggestions .
+    (3) Suggestions -> Suggestions . Suggestion
+    (5) Suggestion -> . Title OtherElements
+    (20) Title -> . TITLE SEMICOLON Text
+
+    $end            reduce using rule 1 (All -> Suggestions .)
+    TITLE           shift and go to state 6
+
+    Suggestion                     shift and go to state 7
+    Title                          shift and go to state 5
+
+state 3
+
+    (2) All -> Text . Suggestions
+    (33) Text -> Text . TEXT
+    (3) Suggestions -> . Suggestions Suggestion
+    (4) Suggestions -> . Suggestion
+    (5) Suggestion -> . Title OtherElements
+    (20) Title -> . TITLE SEMICOLON Text
+
+    TEXT            shift and go to state 9
+    TITLE           shift and go to state 6
+
+    Suggestions                    shift and go to state 8
+    Suggestion                     shift and go to state 4
+    Title                          shift and go to state 5
+
+state 4
+
+    (4) Suggestions -> Suggestion .
+
+    TITLE           reduce using rule 4 (Suggestions -> Suggestion .)
+    $end            reduce using rule 4 (Suggestions -> Suggestion .)
+
+
+state 5
+
+    (5) Suggestion -> Title . OtherElements
+    (6) OtherElements -> . OtherElements OtherElement
+    (7) OtherElements -> .
+
+    AUTHOR          reduce using rule 7 (OtherElements -> .)
+    DESCRIPTION     reduce using rule 7 (OtherElements -> .)
+    GENRE           reduce using rule 7 (OtherElements -> .)
+    DATE            reduce using rule 7 (OtherElements -> .)
+    NOTES           reduce using rule 7 (OtherElements -> .)
+    REVIEWS         reduce using rule 7 (OtherElements -> .)
+    LINKS           reduce using rule 7 (OtherElements -> .)
+    DOWNLOAD        reduce using rule 7 (OtherElements -> .)
+    PAGES           reduce using rule 7 (OtherElements -> .)
+    GOODREADS       reduce using rule 7 (OtherElements -> .)
+    WIKIPEDIA       reduce using rule 7 (OtherElements -> .)
+    QUOTES          reduce using rule 7 (OtherElements -> .)
+    TITLE           reduce using rule 7 (OtherElements -> .)
+    $end            reduce using rule 7 (OtherElements -> .)
+
+    OtherElements                  shift and go to state 10
+
+state 6
+
+    (20) Title -> TITLE . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 11
+
+
+state 7
+
+    (3) Suggestions -> Suggestions Suggestion .
+
+    TITLE           reduce using rule 3 (Suggestions -> Suggestions Suggestion .)
+    $end            reduce using rule 3 (Suggestions -> Suggestions Suggestion .)
+
+
+state 8
+
+    (2) All -> Text Suggestions .
+    (3) Suggestions -> Suggestions . Suggestion
+    (5) Suggestion -> . Title OtherElements
+    (20) Title -> . TITLE SEMICOLON Text
+
+    $end            reduce using rule 2 (All -> Text Suggestions .)
+    TITLE           shift and go to state 6
+
+    Suggestion                     shift and go to state 7
+    Title                          shift and go to state 5
+
+state 9
+
+    (33) Text -> Text TEXT .
+
+    TEXT            reduce using rule 33 (Text -> Text TEXT .)
+    TITLE           reduce using rule 33 (Text -> Text TEXT .)
+    AUTHOR          reduce using rule 33 (Text -> Text TEXT .)
+    DESCRIPTION     reduce using rule 33 (Text -> Text TEXT .)
+    GENRE           reduce using rule 33 (Text -> Text TEXT .)
+    DATE            reduce using rule 33 (Text -> Text TEXT .)
+    NOTES           reduce using rule 33 (Text -> Text TEXT .)
+    REVIEWS         reduce using rule 33 (Text -> Text TEXT .)
+    LINKS           reduce using rule 33 (Text -> Text TEXT .)
+    DOWNLOAD        reduce using rule 33 (Text -> Text TEXT .)
+    PAGES           reduce using rule 33 (Text -> Text TEXT .)
+    GOODREADS       reduce using rule 33 (Text -> Text TEXT .)
+    WIKIPEDIA       reduce using rule 33 (Text -> Text TEXT .)
+    QUOTES          reduce using rule 33 (Text -> Text TEXT .)
+    $end            reduce using rule 33 (Text -> Text TEXT .)
+
+
+state 10
+
+    (5) Suggestion -> Title OtherElements .
+    (6) OtherElements -> OtherElements . OtherElement
+    (8) OtherElement -> . Author
+    (9) OtherElement -> . Description
+    (10) OtherElement -> . Genre
+    (11) OtherElement -> . Date
+    (12) OtherElement -> . Notes
+    (13) OtherElement -> . Reviews
+    (14) OtherElement -> . Links
+    (15) OtherElement -> . Download
+    (16) OtherElement -> . Pages
+    (17) OtherElement -> . Goodreads
+    (18) OtherElement -> . Wikipedia
+    (19) OtherElement -> . Quotes
+    (21) Author -> . AUTHOR SEMICOLON Text
+    (22) Description -> . DESCRIPTION SEMICOLON Text
+    (23) Genre -> . GENRE SEMICOLON Text
+    (24) Date -> . DATE SEMICOLON Text
+    (25) Notes -> . NOTES SEMICOLON Text
+    (26) Reviews -> . REVIEWS SEMICOLON Text
+    (27) Links -> . LINKS SEMICOLON Text
+    (28) Download -> . DOWNLOAD SEMICOLON Text
+    (29) Pages -> . PAGES SEMICOLON Text
+    (30) Goodreads -> . GOODREADS SEMICOLON Text
+    (31) Wikipedia -> . WIKIPEDIA SEMICOLON Text
+    (32) Quotes -> . QUOTES SEMICOLON Text
+
+    TITLE           reduce using rule 5 (Suggestion -> Title OtherElements .)
+    $end            reduce using rule 5 (Suggestion -> Title OtherElements .)
+    AUTHOR          shift and go to state 25
+    DESCRIPTION     shift and go to state 26
+    GENRE           shift and go to state 27
+    DATE            shift and go to state 28
+    NOTES           shift and go to state 29
+    REVIEWS         shift and go to state 30
+    LINKS           shift and go to state 31
+    DOWNLOAD        shift and go to state 32
+    PAGES           shift and go to state 33
+    GOODREADS       shift and go to state 34
+    WIKIPEDIA       shift and go to state 35
+    QUOTES          shift and go to state 36
+
+    OtherElement                   shift and go to state 12
+    Author                         shift and go to state 13
+    Description                    shift and go to state 14
+    Genre                          shift and go to state 15
+    Date                           shift and go to state 16
+    Notes                          shift and go to state 17
+    Reviews                        shift and go to state 18
+    Links                          shift and go to state 19
+    Download                       shift and go to state 20
+    Pages                          shift and go to state 21
+    Goodreads                      shift and go to state 22
+    Wikipedia                      shift and go to state 23
+    Quotes                         shift and go to state 24
+
+state 11
+
+    (20) Title -> TITLE SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 37
+
+state 12
+
+    (6) OtherElements -> OtherElements OtherElement .
+
+    AUTHOR          reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    DESCRIPTION     reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    GENRE           reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    DATE            reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    NOTES           reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    REVIEWS         reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    LINKS           reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    DOWNLOAD        reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    PAGES           reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    GOODREADS       reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    WIKIPEDIA       reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    QUOTES          reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    TITLE           reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+    $end            reduce using rule 6 (OtherElements -> OtherElements OtherElement .)
+
+
+state 13
+
+    (8) OtherElement -> Author .
+
+    AUTHOR          reduce using rule 8 (OtherElement -> Author .)
+    DESCRIPTION     reduce using rule 8 (OtherElement -> Author .)
+    GENRE           reduce using rule 8 (OtherElement -> Author .)
+    DATE            reduce using rule 8 (OtherElement -> Author .)
+    NOTES           reduce using rule 8 (OtherElement -> Author .)
+    REVIEWS         reduce using rule 8 (OtherElement -> Author .)
+    LINKS           reduce using rule 8 (OtherElement -> Author .)
+    DOWNLOAD        reduce using rule 8 (OtherElement -> Author .)
+    PAGES           reduce using rule 8 (OtherElement -> Author .)
+    GOODREADS       reduce using rule 8 (OtherElement -> Author .)
+    WIKIPEDIA       reduce using rule 8 (OtherElement -> Author .)
+    QUOTES          reduce using rule 8 (OtherElement -> Author .)
+    TITLE           reduce using rule 8 (OtherElement -> Author .)
+    $end            reduce using rule 8 (OtherElement -> Author .)
+
+
+state 14
+
+    (9) OtherElement -> Description .
+
+    AUTHOR          reduce using rule 9 (OtherElement -> Description .)
+    DESCRIPTION     reduce using rule 9 (OtherElement -> Description .)
+    GENRE           reduce using rule 9 (OtherElement -> Description .)
+    DATE            reduce using rule 9 (OtherElement -> Description .)
+    NOTES           reduce using rule 9 (OtherElement -> Description .)
+    REVIEWS         reduce using rule 9 (OtherElement -> Description .)
+    LINKS           reduce using rule 9 (OtherElement -> Description .)
+    DOWNLOAD        reduce using rule 9 (OtherElement -> Description .)
+    PAGES           reduce using rule 9 (OtherElement -> Description .)
+    GOODREADS       reduce using rule 9 (OtherElement -> Description .)
+    WIKIPEDIA       reduce using rule 9 (OtherElement -> Description .)
+    QUOTES          reduce using rule 9 (OtherElement -> Description .)
+    TITLE           reduce using rule 9 (OtherElement -> Description .)
+    $end            reduce using rule 9 (OtherElement -> Description .)
+
+
+state 15
+
+    (10) OtherElement -> Genre .
+
+    AUTHOR          reduce using rule 10 (OtherElement -> Genre .)
+    DESCRIPTION     reduce using rule 10 (OtherElement -> Genre .)
+    GENRE           reduce using rule 10 (OtherElement -> Genre .)
+    DATE            reduce using rule 10 (OtherElement -> Genre .)
+    NOTES           reduce using rule 10 (OtherElement -> Genre .)
+    REVIEWS         reduce using rule 10 (OtherElement -> Genre .)
+    LINKS           reduce using rule 10 (OtherElement -> Genre .)
+    DOWNLOAD        reduce using rule 10 (OtherElement -> Genre .)
+    PAGES           reduce using rule 10 (OtherElement -> Genre .)
+    GOODREADS       reduce using rule 10 (OtherElement -> Genre .)
+    WIKIPEDIA       reduce using rule 10 (OtherElement -> Genre .)
+    QUOTES          reduce using rule 10 (OtherElement -> Genre .)
+    TITLE           reduce using rule 10 (OtherElement -> Genre .)
+    $end            reduce using rule 10 (OtherElement -> Genre .)
+
+
+state 16
+
+    (11) OtherElement -> Date .
+
+    AUTHOR          reduce using rule 11 (OtherElement -> Date .)
+    DESCRIPTION     reduce using rule 11 (OtherElement -> Date .)
+    GENRE           reduce using rule 11 (OtherElement -> Date .)
+    DATE            reduce using rule 11 (OtherElement -> Date .)
+    NOTES           reduce using rule 11 (OtherElement -> Date .)
+    REVIEWS         reduce using rule 11 (OtherElement -> Date .)
+    LINKS           reduce using rule 11 (OtherElement -> Date .)
+    DOWNLOAD        reduce using rule 11 (OtherElement -> Date .)
+    PAGES           reduce using rule 11 (OtherElement -> Date .)
+    GOODREADS       reduce using rule 11 (OtherElement -> Date .)
+    WIKIPEDIA       reduce using rule 11 (OtherElement -> Date .)
+    QUOTES          reduce using rule 11 (OtherElement -> Date .)
+    TITLE           reduce using rule 11 (OtherElement -> Date .)
+    $end            reduce using rule 11 (OtherElement -> Date .)
+
+
+state 17
+
+    (12) OtherElement -> Notes .
+
+    AUTHOR          reduce using rule 12 (OtherElement -> Notes .)
+    DESCRIPTION     reduce using rule 12 (OtherElement -> Notes .)
+    GENRE           reduce using rule 12 (OtherElement -> Notes .)
+    DATE            reduce using rule 12 (OtherElement -> Notes .)
+    NOTES           reduce using rule 12 (OtherElement -> Notes .)
+    REVIEWS         reduce using rule 12 (OtherElement -> Notes .)
+    LINKS           reduce using rule 12 (OtherElement -> Notes .)
+    DOWNLOAD        reduce using rule 12 (OtherElement -> Notes .)
+    PAGES           reduce using rule 12 (OtherElement -> Notes .)
+    GOODREADS       reduce using rule 12 (OtherElement -> Notes .)
+    WIKIPEDIA       reduce using rule 12 (OtherElement -> Notes .)
+    QUOTES          reduce using rule 12 (OtherElement -> Notes .)
+    TITLE           reduce using rule 12 (OtherElement -> Notes .)
+    $end            reduce using rule 12 (OtherElement -> Notes .)
+
+
+state 18
+
+    (13) OtherElement -> Reviews .
+
+    AUTHOR          reduce using rule 13 (OtherElement -> Reviews .)
+    DESCRIPTION     reduce using rule 13 (OtherElement -> Reviews .)
+    GENRE           reduce using rule 13 (OtherElement -> Reviews .)
+    DATE            reduce using rule 13 (OtherElement -> Reviews .)
+    NOTES           reduce using rule 13 (OtherElement -> Reviews .)
+    REVIEWS         reduce using rule 13 (OtherElement -> Reviews .)
+    LINKS           reduce using rule 13 (OtherElement -> Reviews .)
+    DOWNLOAD        reduce using rule 13 (OtherElement -> Reviews .)
+    PAGES           reduce using rule 13 (OtherElement -> Reviews .)
+    GOODREADS       reduce using rule 13 (OtherElement -> Reviews .)
+    WIKIPEDIA       reduce using rule 13 (OtherElement -> Reviews .)
+    QUOTES          reduce using rule 13 (OtherElement -> Reviews .)
+    TITLE           reduce using rule 13 (OtherElement -> Reviews .)
+    $end            reduce using rule 13 (OtherElement -> Reviews .)
+
+
+state 19
+
+    (14) OtherElement -> Links .
+
+    AUTHOR          reduce using rule 14 (OtherElement -> Links .)
+    DESCRIPTION     reduce using rule 14 (OtherElement -> Links .)
+    GENRE           reduce using rule 14 (OtherElement -> Links .)
+    DATE            reduce using rule 14 (OtherElement -> Links .)
+    NOTES           reduce using rule 14 (OtherElement -> Links .)
+    REVIEWS         reduce using rule 14 (OtherElement -> Links .)
+    LINKS           reduce using rule 14 (OtherElement -> Links .)
+    DOWNLOAD        reduce using rule 14 (OtherElement -> Links .)
+    PAGES           reduce using rule 14 (OtherElement -> Links .)
+    GOODREADS       reduce using rule 14 (OtherElement -> Links .)
+    WIKIPEDIA       reduce using rule 14 (OtherElement -> Links .)
+    QUOTES          reduce using rule 14 (OtherElement -> Links .)
+    TITLE           reduce using rule 14 (OtherElement -> Links .)
+    $end            reduce using rule 14 (OtherElement -> Links .)
+
+
+state 20
+
+    (15) OtherElement -> Download .
+
+    AUTHOR          reduce using rule 15 (OtherElement -> Download .)
+    DESCRIPTION     reduce using rule 15 (OtherElement -> Download .)
+    GENRE           reduce using rule 15 (OtherElement -> Download .)
+    DATE            reduce using rule 15 (OtherElement -> Download .)
+    NOTES           reduce using rule 15 (OtherElement -> Download .)
+    REVIEWS         reduce using rule 15 (OtherElement -> Download .)
+    LINKS           reduce using rule 15 (OtherElement -> Download .)
+    DOWNLOAD        reduce using rule 15 (OtherElement -> Download .)
+    PAGES           reduce using rule 15 (OtherElement -> Download .)
+    GOODREADS       reduce using rule 15 (OtherElement -> Download .)
+    WIKIPEDIA       reduce using rule 15 (OtherElement -> Download .)
+    QUOTES          reduce using rule 15 (OtherElement -> Download .)
+    TITLE           reduce using rule 15 (OtherElement -> Download .)
+    $end            reduce using rule 15 (OtherElement -> Download .)
+
+
+state 21
+
+    (16) OtherElement -> Pages .
+
+    AUTHOR          reduce using rule 16 (OtherElement -> Pages .)
+    DESCRIPTION     reduce using rule 16 (OtherElement -> Pages .)
+    GENRE           reduce using rule 16 (OtherElement -> Pages .)
+    DATE            reduce using rule 16 (OtherElement -> Pages .)
+    NOTES           reduce using rule 16 (OtherElement -> Pages .)
+    REVIEWS         reduce using rule 16 (OtherElement -> Pages .)
+    LINKS           reduce using rule 16 (OtherElement -> Pages .)
+    DOWNLOAD        reduce using rule 16 (OtherElement -> Pages .)
+    PAGES           reduce using rule 16 (OtherElement -> Pages .)
+    GOODREADS       reduce using rule 16 (OtherElement -> Pages .)
+    WIKIPEDIA       reduce using rule 16 (OtherElement -> Pages .)
+    QUOTES          reduce using rule 16 (OtherElement -> Pages .)
+    TITLE           reduce using rule 16 (OtherElement -> Pages .)
+    $end            reduce using rule 16 (OtherElement -> Pages .)
+
+
+state 22
+
+    (17) OtherElement -> Goodreads .
+
+    AUTHOR          reduce using rule 17 (OtherElement -> Goodreads .)
+    DESCRIPTION     reduce using rule 17 (OtherElement -> Goodreads .)
+    GENRE           reduce using rule 17 (OtherElement -> Goodreads .)
+    DATE            reduce using rule 17 (OtherElement -> Goodreads .)
+    NOTES           reduce using rule 17 (OtherElement -> Goodreads .)
+    REVIEWS         reduce using rule 17 (OtherElement -> Goodreads .)
+    LINKS           reduce using rule 17 (OtherElement -> Goodreads .)
+    DOWNLOAD        reduce using rule 17 (OtherElement -> Goodreads .)
+    PAGES           reduce using rule 17 (OtherElement -> Goodreads .)
+    GOODREADS       reduce using rule 17 (OtherElement -> Goodreads .)
+    WIKIPEDIA       reduce using rule 17 (OtherElement -> Goodreads .)
+    QUOTES          reduce using rule 17 (OtherElement -> Goodreads .)
+    TITLE           reduce using rule 17 (OtherElement -> Goodreads .)
+    $end            reduce using rule 17 (OtherElement -> Goodreads .)
+
+
+state 23
+
+    (18) OtherElement -> Wikipedia .
+
+    AUTHOR          reduce using rule 18 (OtherElement -> Wikipedia .)
+    DESCRIPTION     reduce using rule 18 (OtherElement -> Wikipedia .)
+    GENRE           reduce using rule 18 (OtherElement -> Wikipedia .)
+    DATE            reduce using rule 18 (OtherElement -> Wikipedia .)
+    NOTES           reduce using rule 18 (OtherElement -> Wikipedia .)
+    REVIEWS         reduce using rule 18 (OtherElement -> Wikipedia .)
+    LINKS           reduce using rule 18 (OtherElement -> Wikipedia .)
+    DOWNLOAD        reduce using rule 18 (OtherElement -> Wikipedia .)
+    PAGES           reduce using rule 18 (OtherElement -> Wikipedia .)
+    GOODREADS       reduce using rule 18 (OtherElement -> Wikipedia .)
+    WIKIPEDIA       reduce using rule 18 (OtherElement -> Wikipedia .)
+    QUOTES          reduce using rule 18 (OtherElement -> Wikipedia .)
+    TITLE           reduce using rule 18 (OtherElement -> Wikipedia .)
+    $end            reduce using rule 18 (OtherElement -> Wikipedia .)
+
+
+state 24
+
+    (19) OtherElement -> Quotes .
+
+    AUTHOR          reduce using rule 19 (OtherElement -> Quotes .)
+    DESCRIPTION     reduce using rule 19 (OtherElement -> Quotes .)
+    GENRE           reduce using rule 19 (OtherElement -> Quotes .)
+    DATE            reduce using rule 19 (OtherElement -> Quotes .)
+    NOTES           reduce using rule 19 (OtherElement -> Quotes .)
+    REVIEWS         reduce using rule 19 (OtherElement -> Quotes .)
+    LINKS           reduce using rule 19 (OtherElement -> Quotes .)
+    DOWNLOAD        reduce using rule 19 (OtherElement -> Quotes .)
+    PAGES           reduce using rule 19 (OtherElement -> Quotes .)
+    GOODREADS       reduce using rule 19 (OtherElement -> Quotes .)
+    WIKIPEDIA       reduce using rule 19 (OtherElement -> Quotes .)
+    QUOTES          reduce using rule 19 (OtherElement -> Quotes .)
+    TITLE           reduce using rule 19 (OtherElement -> Quotes .)
+    $end            reduce using rule 19 (OtherElement -> Quotes .)
+
+
+state 25
+
+    (21) Author -> AUTHOR . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 38
+
+
+state 26
+
+    (22) Description -> DESCRIPTION . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 39
+
+
+state 27
+
+    (23) Genre -> GENRE . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 40
+
+
+state 28
+
+    (24) Date -> DATE . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 41
+
+
+state 29
+
+    (25) Notes -> NOTES . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 42
+
+
+state 30
+
+    (26) Reviews -> REVIEWS . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 43
+
+
+state 31
+
+    (27) Links -> LINKS . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 44
+
+
+state 32
+
+    (28) Download -> DOWNLOAD . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 45
+
+
+state 33
+
+    (29) Pages -> PAGES . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 46
+
+
+state 34
+
+    (30) Goodreads -> GOODREADS . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 47
+
+
+state 35
+
+    (31) Wikipedia -> WIKIPEDIA . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 48
+
+
+state 36
+
+    (32) Quotes -> QUOTES . SEMICOLON Text
+
+    SEMICOLON       shift and go to state 49
+
+
+state 37
+
+    (20) Title -> TITLE SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    GENRE           reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    DATE            reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    NOTES           reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    REVIEWS         reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    LINKS           reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    PAGES           reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    GOODREADS       reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    QUOTES          reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    TITLE           reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    $end            reduce using rule 20 (Title -> TITLE SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 38
+
+    (21) Author -> AUTHOR SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 50
+
+state 39
+
+    (22) Description -> DESCRIPTION SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 51
+
+state 40
+
+    (23) Genre -> GENRE SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 52
+
+state 41
+
+    (24) Date -> DATE SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 53
+
+state 42
+
+    (25) Notes -> NOTES SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 54
+
+state 43
+
+    (26) Reviews -> REVIEWS SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 55
+
+state 44
+
+    (27) Links -> LINKS SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 56
+
+state 45
+
+    (28) Download -> DOWNLOAD SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 57
+
+state 46
+
+    (29) Pages -> PAGES SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 58
+
+state 47
+
+    (30) Goodreads -> GOODREADS SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 59
+
+state 48
+
+    (31) Wikipedia -> WIKIPEDIA SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 60
+
+state 49
+
+    (32) Quotes -> QUOTES SEMICOLON . Text
+    (33) Text -> . Text TEXT
+    (34) Text -> .
+
+    TEXT            reduce using rule 34 (Text -> .)
+    AUTHOR          reduce using rule 34 (Text -> .)
+    DESCRIPTION     reduce using rule 34 (Text -> .)
+    GENRE           reduce using rule 34 (Text -> .)
+    DATE            reduce using rule 34 (Text -> .)
+    NOTES           reduce using rule 34 (Text -> .)
+    REVIEWS         reduce using rule 34 (Text -> .)
+    LINKS           reduce using rule 34 (Text -> .)
+    DOWNLOAD        reduce using rule 34 (Text -> .)
+    PAGES           reduce using rule 34 (Text -> .)
+    GOODREADS       reduce using rule 34 (Text -> .)
+    WIKIPEDIA       reduce using rule 34 (Text -> .)
+    QUOTES          reduce using rule 34 (Text -> .)
+    TITLE           reduce using rule 34 (Text -> .)
+    $end            reduce using rule 34 (Text -> .)
+
+    Text                           shift and go to state 61
+
+state 50
+
+    (21) Author -> AUTHOR SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    GENRE           reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    DATE            reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    NOTES           reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    REVIEWS         reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    LINKS           reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    PAGES           reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    GOODREADS       reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    QUOTES          reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    TITLE           reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    $end            reduce using rule 21 (Author -> AUTHOR SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 51
+
+    (22) Description -> DESCRIPTION SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    GENRE           reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    DATE            reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    NOTES           reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    REVIEWS         reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    LINKS           reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    PAGES           reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    GOODREADS       reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    QUOTES          reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    TITLE           reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    $end            reduce using rule 22 (Description -> DESCRIPTION SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 52
+
+    (23) Genre -> GENRE SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    GENRE           reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    DATE            reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    NOTES           reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    REVIEWS         reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    LINKS           reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    PAGES           reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    GOODREADS       reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    QUOTES          reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    TITLE           reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    $end            reduce using rule 23 (Genre -> GENRE SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 53
+
+    (24) Date -> DATE SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    GENRE           reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    DATE            reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    NOTES           reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    REVIEWS         reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    LINKS           reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    PAGES           reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    GOODREADS       reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    QUOTES          reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    TITLE           reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    $end            reduce using rule 24 (Date -> DATE SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 54
+
+    (25) Notes -> NOTES SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    GENRE           reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    DATE            reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    NOTES           reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    REVIEWS         reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    LINKS           reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    PAGES           reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    GOODREADS       reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    QUOTES          reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    TITLE           reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    $end            reduce using rule 25 (Notes -> NOTES SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 55
+
+    (26) Reviews -> REVIEWS SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    GENRE           reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    DATE            reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    NOTES           reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    REVIEWS         reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    LINKS           reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    PAGES           reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    GOODREADS       reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    QUOTES          reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    TITLE           reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    $end            reduce using rule 26 (Reviews -> REVIEWS SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 56
+
+    (27) Links -> LINKS SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    GENRE           reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    DATE            reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    NOTES           reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    REVIEWS         reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    LINKS           reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    PAGES           reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    GOODREADS       reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    QUOTES          reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    TITLE           reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    $end            reduce using rule 27 (Links -> LINKS SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 57
+
+    (28) Download -> DOWNLOAD SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    GENRE           reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    DATE            reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    NOTES           reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    REVIEWS         reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    LINKS           reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    PAGES           reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    GOODREADS       reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    QUOTES          reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    TITLE           reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    $end            reduce using rule 28 (Download -> DOWNLOAD SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 58
+
+    (29) Pages -> PAGES SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    GENRE           reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    DATE            reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    NOTES           reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    REVIEWS         reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    LINKS           reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    PAGES           reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    GOODREADS       reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    QUOTES          reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    TITLE           reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    $end            reduce using rule 29 (Pages -> PAGES SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 59
+
+    (30) Goodreads -> GOODREADS SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    GENRE           reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    DATE            reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    NOTES           reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    REVIEWS         reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    LINKS           reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    PAGES           reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    GOODREADS       reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    QUOTES          reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    TITLE           reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    $end            reduce using rule 30 (Goodreads -> GOODREADS SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 60
+
+    (31) Wikipedia -> WIKIPEDIA SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    GENRE           reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    DATE            reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    NOTES           reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    REVIEWS         reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    LINKS           reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    PAGES           reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    GOODREADS       reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    QUOTES          reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    TITLE           reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    $end            reduce using rule 31 (Wikipedia -> WIKIPEDIA SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+
+state 61
+
+    (32) Quotes -> QUOTES SEMICOLON Text .
+    (33) Text -> Text . TEXT
+
+    AUTHOR          reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    DESCRIPTION     reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    GENRE           reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    DATE            reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    NOTES           reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    REVIEWS         reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    LINKS           reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    DOWNLOAD        reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    PAGES           reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    GOODREADS       reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    WIKIPEDIA       reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    QUOTES          reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    TITLE           reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    $end            reduce using rule 32 (Quotes -> QUOTES SEMICOLON Text .)
+    TEXT            shift and go to state 9
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for TITLE in state 0 resolved as shift
