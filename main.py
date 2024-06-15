@@ -98,13 +98,17 @@ class DiscordBot(commands.Bot):
             if f.endswith(".py"):
                 extension = f[:-3]
                 try:
-                    await self.load_extension(f"cogs.{extension}")
+                    await self.load_extension_with_db(f"cogs.{extension}")
                     self.logger.info(f"Loaded extension '{extension}'")
                 except Exception as e:
                     exception = f"{type(e).__name__}: {e}"
                     self.logger.error(
                         f"Failed to load extension {extension}\n{exception}"
                     )
+
+    async def load_extension_with_db(self, name: str) -> None:
+        module = __import__(name, fromlist=['setup'])
+        await module.setup(self, self.database)
 
     @tasks.loop(minutes=1.0)
     async def status_task(self) -> None:

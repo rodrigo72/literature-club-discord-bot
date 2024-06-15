@@ -7,8 +7,9 @@ from discord.ext.commands import Context
 
 
 class General(commands.Cog, name="general"):
-    def __init__(self, bot) -> None:
+    def __init__(self, bot, database) -> None:
         self.bot = bot
+        self.database = database
         self.context_menu_user = app_commands.ContextMenu(
             name="Grab ID", callback=self.grab_id
         )
@@ -219,5 +220,5 @@ class General(commands.Cog, name="general"):
         await context.send(embed=embed)
 
 
-async def setup(bot) -> None:
-    await bot.add_cog(General(bot))
+async def setup(bot, database) -> None:
+    await bot.add_cog(General(bot, database))

@@ -9,9 +9,9 @@ import re
 
 
 class Suggestions(commands.Cog, name="suggestions"):
-    def __init__(self, bot) -> None:
+    def __init__(self, bot, database) -> None:
         self.bot = bot
-        self.database = self.database = TinyDB("db.json")
+        self.database = database
         self.month_translation = {
             'janeiro': 'January',
             'fevereiro': 'February',
@@ -78,6 +78,9 @@ class Suggestions(commands.Cog, name="suggestions"):
         server = Query()
         loop = asyncio.get_running_loop()
         result = await loop.run_in_executor(None, self.database.search, server.server_id == context.guild.id)
+
+        print(result)
+
         if result:
             if month not in result[0]['months']:
                 await context.send("No suggestions found for this month.")
@@ -113,12 +116,18 @@ class Suggestions(commands.Cog, name="suggestions"):
             return
 
         user_id = str(context.author.id)
-        for month_data in result[0]['months'].values():
+        for month_key, month_data in result[0]['months'].items():
             suggestions = month_data.get(user_id)
             if suggestions:
                 for suggestion in suggestions:
                     if suggestion['id'] == uuid:
                         suggestions.remove(suggestion)
+
+                        if len(suggestions) == 0:
+                            result[0]['months'][month_key].pop(user_id, None)
+                        if len(result[0]['months'][month_key]) == 0:
+                            result[0]['months'].pop(month_key, None)
+
                         await loop.run_in_executor(None, self.database.update, {
                             'months': result[0]['months']
                         }, server.server_id == context.guild.id)
@@ -159,5 +168,5 @@ class Suggestions(commands.Cog, name="suggestions"):
         await context.send("Suggestions sent to your DMs.")
 
 
-async def setup(bot) -> None:
-    await bot.add_cog(Suggestions(bot))
+async def setup(bot, database) -> None:
+    await bot.add_cog(Suggestions(bot, database))

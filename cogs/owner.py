@@ -5,8 +5,9 @@ from discord.ext.commands import Context
 
 
 class Owner(commands.Cog, name="owner"):
-    def __init__(self, bot) -> None:
+    def __init__(self, bot, database) -> None:
         self.bot = bot
+        self.database = database
 
     @commands.command(
         name="sync",
@@ -208,5 +209,5 @@ class Owner(commands.Cog, name="owner"):
         await context.send(embed=embed)
 
 
-async def setup(bot) -> None:
-    await bot.add_cog(Owner(bot))
+async def setup(bot, database) -> None:
+    await bot.add_cog(Owner(bot, database))
