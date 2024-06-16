@@ -94,7 +94,7 @@ def get_embed_from_suggestion(s: dict, author: str) -> Embed:
 
 
 def clean_string_before_parsing(s: str) -> str:
-    pattern = r"([*_`]+)([^\:]{0,10}?)\:([^\:]*?)\1"
+    pattern = r"([*_`]+)([^\n\:]{0,10}?)\:([^\:\n]*?)\1"
 
     def replace_colon(match):
         style = match.group(1)
