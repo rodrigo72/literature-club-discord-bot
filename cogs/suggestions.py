@@ -35,7 +35,7 @@ class Suggestions(commands.Cog, name="suggestions"):
     )
     async def s(self, context: Context, arg1=None, arg2=None) -> None:
         await self.add_server_if_not_exists(context.guild.id, context.guild.name)
-        mention_pattern = re.compile(r"<@!?(\d+)>")
+        mention_pattern = re.compile(r"<@!?(\d{17,19})>|(\d{17,19})")
         month_pattern = re.compile(r"\d{2}/\d{2}")
 
         # Default values
@@ -46,7 +46,7 @@ class Suggestions(commands.Cog, name="suggestions"):
         # One argument : month or user
         elif arg2 is None:
             if match := mention_pattern.match(arg1):
-                user_id = match.group(1)
+                user_id = match.group(1) if match.group(1) else match.group(2)
                 month = next_month_year()
             elif month_pattern.match(arg1):
                 user_id = str(context.author.id)
@@ -58,7 +58,7 @@ class Suggestions(commands.Cog, name="suggestions"):
         # Two arguments : month and user
         else:
             if match := mention_pattern.match(arg1):
-                user_id = match.group(1)
+                user_id = match.group(1) if match.group(1) else match.group(2)
                 if month_pattern.match(arg2):
                     month = arg2
                 else:
@@ -67,7 +67,7 @@ class Suggestions(commands.Cog, name="suggestions"):
             elif month_pattern.match(arg1):
                 month = arg1
                 if match := mention_pattern.match(arg2):
-                    user_id = match.group(1)
+                    user_id = match.group(1) if match.group(1) else match.group(2)
                 else:
                     await context.send("Invalid arguments.")
                     return
