@@ -28,79 +28,79 @@ def t_SEMICOLON(t):
 
 
 def t_TITLE(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>titles|title|título|títulos|titulos|titulo|nome|nomes)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>titles|title|título|títulos|titulos|titulo|nome|nomes)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_AUTHOR(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>autores|autoras|autora|authors|author|autor)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>autores|autoras|autora|authors|author|autor)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_GENRE(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>genres|géneros|generos|categorias|género|genero|genre)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>genres|géneros|generos|categorias|género|genero|genre)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_DESCRIPTION(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>description|descrição|descriçao|descricao|summary|sinopse|resumo)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>description|descrição|descriçao|descricao|summary|sinopse|resumo)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_DATE(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>publication\sdate|data\sde\spublicação|data\sde\spublicaçao|data\sde\spublicacao|release\sdate|data|date)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>publication\sdate|data\sde\spublicação|data\sde\spublicaçao|data\sde\spublicacao|release\sdate|data|date)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_NOTES(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>comments|comment|comentários|comentarios|comentário|comentario|thoughts|footnotes|footnote|notes|notas|nota|note)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>comments|comment|comentários|comentarios|comentário|comentario|thoughts|footnotes|footnote|notes|notas|nota|note)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_REVIEWS(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>reviews|review|avaliações|avaliaçoes|avaliacoes|avaliação|avaliaçao|avaliacao)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>reviews|review|avaliações|avaliaçoes|avaliacoes|avaliação|avaliaçao|avaliacao)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_GOODREADS(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>goodreads|link do goodreads)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>goodreads|link do goodreads)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_WIKIPEDIA(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>wikipedia|wikipédia|link\sda\swikipédia|link\sda\swikipedia|link\sdo\swikipedia|link\sdo\swikipédia|wikipédia|wikipedia|wiki)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>wikipedia|wikipédia|link\sda\swikipédia|link\sda\swikipedia|link\sdo\swikipedia|link\sdo\swikipédia|wikipédia|wikipedia|wiki)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_LINKS(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>link.*(?=\:)|links|link)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>link.*(?=\:)|links|link)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_PAGES(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>número\sde\spáginas|numero\sde\spáginas|número\sde\spaginas|numero\sde\spaginas|nº\sde\spáginas|nº\sde\spaginas|nº\spáginas|nº\spaginas|páginas|paginas|number\sof\spages|nº\sof\spages|nº\spages|pages|length|comprimento)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>número\sde\spáginas|numero\sde\spáginas|número\sde\spaginas|numero\sde\spaginas|nº\sde\spáginas|nº\sde\spaginas|nº\spáginas|nº\spaginas|páginas|paginas|number\sof\spages|nº\sof\spages|nº\spages|pages|length|comprimento)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_DOWNLOAD(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>download|downloads|tranferir)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>download|downloads|tranferir)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
 
 def t_QUOTES(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>quote|quotes|citações|citaçoes|citacoes|citação|citaçao|citacao)([^\:]*)(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>quote|quotes|citações|citaçoes|citacoes|citação|citaçao|citacao)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 
