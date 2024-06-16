@@ -3,6 +3,7 @@ from datetime import datetime
 from discord import Embed
 from typing import Dict, Tuple
 from dateutil.relativedelta import relativedelta
+import re
 
 
 class LoggingFormatter(logging.Formatter):
@@ -90,3 +91,26 @@ def get_embed_from_suggestion(s: dict, author: str) -> Embed:
 
     embed.set_footer(text=f"Suggested by {author} \nUUID: {s['id']}")
     return embed
+
+
+def clean_string_before_parsing(s: str) -> str:
+    pattern = r"([*_`]+)([^\:]{0,10}?)\:([^\:]*?)\1"
+
+    def replace_colon(match):
+        style = match.group(1)
+        left = match.group(2)
+        right = match.group(3)
+        return f'{style}{left}{style}:{right}'
+
+    return re.sub(pattern, replace_colon, s)
+
+
+def clean_text_after_parsing(s: str) -> str:
+    pattern = r"(?<!\.\.)(\.\s+?)(?!(?:http(?:s)?)|www|[^\s]+?\.(?:com|dev|org))([a-z])"
+
+    def replace_colon(match):
+        dot_and_space = match.group(1)
+        letter = match.group(2).upper()
+        return f"{dot_and_space}{letter}"
+
+    return re.sub(pattern, replace_colon, s)

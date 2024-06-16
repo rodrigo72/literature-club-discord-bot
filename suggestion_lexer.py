@@ -88,7 +88,7 @@ def t_LINKS(t):
 
 
 def t_PAGES(t):
-    r'([_*\>\-\.\=]*\s*)?(?P<val>número\sde\spáginas|numero\sde\spáginas|número\sde\spaginas|numero\sde\spaginas|nº\sde\spáginas|nº\sde\spaginas|nº\spáginas|nº\spaginas|páginas|paginas|number\sof\spages|nº\sof\spages|nº\spages|pages|length|comprimento)([^\:]{0,5})(?=\:)'
+    r'([_*\>\-\.\=]*\s*)?(?P<val>número\sde\spáginas|numero\sde\spáginas|número\sde\spaginas|numero\sde\spaginas|nº\sde\spáginas|nº\sde\spaginas|nº\spáginas|nº\spaginas|páginas|paginas|number\sof\spages|nº\sof\spages|nº\spages|pages|length|comprimento|nº)([^\:]{0,5})(?=\:)'
     t.value = t.lexer.lexmatch.group('val')
     return t
 

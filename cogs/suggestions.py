@@ -3,7 +3,7 @@ from discord.ext.commands import Context
 
 import asyncio
 from tinydb import Query
-from utils import next_month_year, get_embed_from_suggestion
+from utils import next_month_year, get_embed_from_suggestion, clean_string_before_parsing
 from suggestion_yacc import parser
 import re
 
@@ -86,7 +86,8 @@ class Suggestions(commands.Cog, name="suggestions"):
                 suggestions = result[0]['months'][month]
                 if user_id in suggestions:
                     for suggestion in suggestions[user_id]:
-                        embed = get_embed_from_suggestion(suggestion, context.author.name)
+                        user = await self.bot.fetch_user(int(user_id))
+                        embed = get_embed_from_suggestion(suggestion, user.name)
                         await context.send(embed=embed)
                 else:
                     if user_id == str(context.author.id):
@@ -183,7 +184,8 @@ class Suggestions(commands.Cog, name="suggestions"):
         count = 0
 
         async for message in channel.history(limit=limit):
-            result = parser.parse(message.content.lower())
+            message_content = clean_string_before_parsing(message.content).lower()
+            result = parser.parse(message_content)
             if result is None:
                 continue
             await self.bot.add_result_to_db(message, result, month=month)

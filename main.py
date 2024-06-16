@@ -16,7 +16,8 @@ from discord.ext.commands import Context
 import asyncio
 from tinydb import TinyDB, Query
 
-from utils import (LoggingFormatter, get_embed_from_suggestion, next_month_year)
+from utils import (LoggingFormatter, get_embed_from_suggestion, next_month_year, clean_string_before_parsing,
+                   clean_text_after_parsing)
 
 """CONFIG"""
 
@@ -111,7 +112,8 @@ class DiscordBot(commands.Bot):
             await self.process_commands(message)
         else:
             try:
-                result = parser.parse(message.content.lower())
+                message_content = clean_string_before_parsing(message.content).lower()
+                result = parser.parse(message_content)
                 if result is None:
                     return
                 suggestions = await self.add_result_to_db(message, result)
@@ -171,6 +173,8 @@ class DiscordBot(commands.Bot):
 
         for s in suggestions:
             s['id'] = str(uuid.uuid4())
+            if 'description' in s:
+                s['description'] = clean_text_after_parsing(s['description'])
             months[chosen_month][user_id].append(s)
 
         await loop.run_in_executor(
