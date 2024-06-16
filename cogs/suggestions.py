@@ -162,12 +162,13 @@ class Suggestions(commands.Cog, name="suggestions"):
             await context.send("No suggestions found for this month.")
             return
 
+        await context.send("Suggestions sent to your DMs.")
+
         for user in result[0]['months'][month]:
             for suggestion in result[0]['months'][month][user]:
-                embed = get_embed_from_suggestion(suggestion, context.author.name)
+                user_obj = await self.bot.fetch_user(int(user))
+                embed = get_embed_from_suggestion(suggestion, user_obj.name)
                 await context.author.send(embed=embed)
-
-        await context.send("Suggestions sent to your DMs.")
 
     @commands.hybrid_command(
         name="scan",
