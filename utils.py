@@ -30,3 +30,15 @@ class LoggingFormatter(logging.Formatter):
         form = form.replace("(green)", self.green + self.bold)
         formatter = logging.Formatter(form, "%Y-%m-%d %H:%M:%S", style="{")
         return formatter.format(record)
+
+
+def to_title_case(s: str) -> str | None:
+    if not s:
+        return s
+    return s.title()
+
+
+def capitalize_first_letter(s: str) -> str | None:
+    if not s:
+        return s
+    return s[0].upper() + s[1:]
