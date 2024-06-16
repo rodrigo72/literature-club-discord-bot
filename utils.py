@@ -1,4 +1,8 @@
 import logging
+from datetime import datetime
+from discord import Embed
+from typing import Dict, Tuple
+from dateutil.relativedelta import relativedelta
 
 
 class LoggingFormatter(logging.Formatter):
@@ -42,3 +46,47 @@ def capitalize_first_letter(s: str) -> str | None:
     if not s:
         return s
     return s[0].upper() + s[1:]
+
+
+def current_month_year():
+    now = datetime.now()
+    formatted_date = now.strftime("%m/%y")
+    return formatted_date
+
+
+def next_month_year():
+    now = datetime.now()
+    next_month = now + relativedelta(months=1)
+    formatted_date = next_month.strftime("%m/%y")
+    return formatted_date
+
+
+def get_embed_from_suggestion(s: dict, author: str) -> Embed:
+    embed = Embed(
+        title=to_title_case(s['title']),
+        color=0xA7A7A7,
+    )
+
+    if 'description' in s and s['description']:
+        embed.description = capitalize_first_letter(s['description'])
+
+    fields: Dict[str, Tuple[str | None, bool]] = {
+        'author': (to_title_case(s.get('author')), False),
+        'genre': (to_title_case(s.get('genre')), False),
+        'date': (to_title_case(s.get('date')), False),
+        'notes': (s.get('notes'), False),
+        'reviews': (s.get('reviews'), False),
+        'links': (s.get('links'), False),
+        'download': (s.get('download'), False),
+        'pages': (s.get('pages'), False),
+        'goodreads': (s.get('goodreads'), False),
+        'wikipedia': (s.get('wikipedia'), False),
+        'quotes': (s.get('quotes'), False),
+    }
+
+    for name, value in fields.items():
+        if value[0]:
+            embed.add_field(name=name.capitalize(), value=value[0], inline=value[1])
+
+    embed.set_footer(text=f"Suggested by {author} \nUUID: {s['id']}")
+    return embed

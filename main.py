@@ -5,7 +5,6 @@ import random
 import discord
 import logging
 import platform
-import datetime
 import uuid
 
 from suggestion_yacc import parser
@@ -17,7 +16,7 @@ from discord.ext.commands import Context
 import asyncio
 from tinydb import TinyDB, Query
 
-from utils import LoggingFormatter, to_title_case, capitalize_first_letter
+from utils import (LoggingFormatter, get_embed_from_suggestion, next_month_year)
 
 """CONFIG"""
 
@@ -51,37 +50,6 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 
-def get_embed_from_suggestion(s: dict, author: str) -> discord.Embed:
-    embed = discord.Embed(
-        title=to_title_case(s['title']),
-        color=0xA7A7A7,
-    )
-
-    if 'description' in s and s['description']:
-        embed.description = capitalize_first_letter(s['description'])
-
-    fields = {
-        'author': (to_title_case(s.get('author')), False),
-        'genre': (to_title_case(s.get('genre')), False),
-        'date': (to_title_case(s.get('date')), False),
-        'notes': (s.get('notes'), False),
-        'reviews': (s.get('reviews'), False),
-        'links': (s.get('links'), False),
-        'download': (s.get('download'), False),
-        'pages': (s.get('pages'), False),
-        'goodreads': (s.get('goodreads'), False),
-        'wikipedia': (s.get('wikipedia'), False),
-        'quotes': (s.get('quotes'), False),
-    }
-
-    for name, value in fields.items():
-        if value[0]:
-            embed.add_field(name=name.capitalize(), value=value[0], inline=value[1])
-
-    embed.set_footer(text=f"Suggested by {author} \nUUID: {s['id']}")
-    return embed
-
-
 class DiscordBot(commands.Bot):
     def __init__(self) -> None:
         super().__init__(
@@ -113,9 +81,13 @@ class DiscordBot(commands.Bot):
     @tasks.loop(minutes=1.0)
     async def status_task(self) -> None:
         if random.randint(0, 1) == 0:
-            await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Three-Body Problem"))
+            await self.change_presence(
+                activity=discord.Activity(type=discord.ActivityType.watching, name="Three-Body Problem")
+            )
         else:
-            await self.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="male manipulator music"))
+            await self.change_presence(
+                activity=discord.Activity(type=discord.ActivityType.listening, name="male manipulator music")
+            )
 
     @status_task.before_loop
     async def before_status_task(self) -> None:
@@ -140,7 +112,13 @@ class DiscordBot(commands.Bot):
         else:
             try:
                 result = parser.parse(message.content.lower())
-                await self.send_parser_result(message, result)
+                if result is None:
+                    return
+                suggestions = await self.add_result_to_db(message, result)
+                print(suggestions)
+                for suggestion in suggestions:
+                    embed = get_embed_from_suggestion(suggestion, message.author.name)
+                    await message.channel.send(embed=embed)
             except Exception as e:
                 pass
 
@@ -158,7 +136,7 @@ class DiscordBot(commands.Bot):
         else:
             self.logger.info(f"Server {server_name} already exists in the database.")
 
-    async def send_parser_result(self, message: discord.Message, result: list) -> None:
+    async def add_result_to_db(self, message: discord.Message, result: list, month=None) -> list | None:
         await self.add_server_if_not_exists(message.guild.id, message.guild.name)
 
         server = Query()
@@ -167,17 +145,18 @@ class DiscordBot(commands.Bot):
 
         if not result_db:  # impossible
             self.logger.error(f"Server {message.guild.name} not found in the database.")
-            return
+            return None
 
         user_id = str(message.author.id)
-        current_month = datetime.datetime.now().strftime("%B")
+
+        chosen_month = next_month_year() if not month else month
         months = result_db[0]['months']
 
-        if months.get(current_month) is None:
-            months[current_month] = {}
-            months[current_month][user_id] = []
-        elif months[current_month].get(user_id) is None:
-            months[current_month][user_id] = []
+        if months.get(chosen_month) is None:
+            months[chosen_month] = {}
+            months[chosen_month][user_id] = []
+        elif months[chosen_month].get(user_id) is None:
+            months[chosen_month][user_id] = []
 
         suggestions = []
         for item in result:
@@ -192,13 +171,12 @@ class DiscordBot(commands.Bot):
 
         for s in suggestions:
             s['id'] = str(uuid.uuid4())
-            months[current_month][user_id].append(s)
-            embed = get_embed_from_suggestion(s, message.author.name)
-            await message.channel.send(embed=embed)
+            months[chosen_month][user_id].append(s)
 
         await loop.run_in_executor(
             None, self.database.update, {'months': months}, server.server_id == message.guild.id
         )
+        return suggestions
 
     async def on_command_completion(self, context: Context) -> None:
         full_command_name = context.command.qualified_name

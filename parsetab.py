@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AUTHOR DATE DESCRIPTION DOWNLOAD GENRE GOODREADS LINKS NOTES PAGES QUOTES REVIEWS SEMICOLON TEXT TITLE WIKIPEDIAAll : Suggestions\n            | Text Suggestions\n    Suggestions : Suggestions Suggestion\n                    | Suggestion\n    Suggestion : Title OtherElements\n    OtherElements : OtherElements OtherElement\n                      |\n    OtherElement : Author\n                     | Description\n                     | Genre\n                     | Date\n                     | Notes\n                     | Reviews\n                     | Links\n                     | Download\n                     | Pages\n                     | Goodreads\n                     | Wikipedia\n                     | Quotes\n    Title : TITLE SEMICOLON TextAuthor : AUTHOR SEMICOLON TextDescription : DESCRIPTION SEMICOLON TextGenre : GENRE SEMICOLON TextDate : DATE SEMICOLON TextNotes : NOTES SEMICOLON TextReviews : REVIEWS SEMICOLON TextLinks : LINKS SEMICOLON TextDownload : DOWNLOAD SEMICOLON TextPages : PAGES SEMICOLON TextGoodreads : GOODREADS SEMICOLON TextWikipedia : WIKIPEDIA SEMICOLON TextQuotes : QUOTES SEMICOLON TextText : Text TEXT\n             |\n    '
+_lr_signature = 'AUTHOR DATE DESCRIPTION DOWNLOAD GENRE GOODREADS LINKS NOTES PAGES QUOTES REVIEWS SEMICOLON TEXT TITLE WIKIPEDIAAll : Suggestions\n            | Text Suggestions\n    Suggestions : Suggestions Suggestion\n                    | Suggestion\n    Suggestion : Title OtherElements\n    OtherElements : OtherElements OtherElement\n                      |\n    OtherElement : Author\n                     | Description\n                     | Genre\n                     | Date\n                     | Notes\n                     | Reviews\n                     | Links\n                     | Download\n                     | Pages\n                     | Goodreads\n                     | Wikipedia\n                     | Quotes\n    Title : TITLE SEMICOLON TextAuthor : AUTHOR SEMICOLON TextDescription : DESCRIPTION SEMICOLON TextGenre : GENRE SEMICOLON TextDate : DATE SEMICOLON TextNotes : NOTES SEMICOLON TextReviews : REVIEWS SEMICOLON TextLinks : LINKS SEMICOLON TextDownload : DOWNLOAD SEMICOLON TextPages : PAGES SEMICOLON TextGoodreads : GOODREADS SEMICOLON TextWikipedia : WIKIPEDIA SEMICOLON TextQuotes : QUOTES SEMICOLON TextText : Text TEXT\n             | TEXT\n    '
     
-_lr_action_items = {'TEXT':([0,3,9,11,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-34,9,-33,-34,9,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,9,9,9,9,9,9,9,9,9,9,9,9,]),'TITLE':([0,2,3,4,5,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[6,6,6,-4,-7,-3,6,-33,-5,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'$end':([1,2,4,5,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[0,-1,-4,-7,-3,-2,-33,-5,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'AUTHOR':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,25,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'DESCRIPTION':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,26,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'GENRE':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,27,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'DATE':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,28,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'NOTES':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,29,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'REVIEWS':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,30,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'LINKS':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,31,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'DOWNLOAD':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,32,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'PAGES':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,33,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'GOODREADS':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,34,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'WIKIPEDIA':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,35,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'QUOTES':([5,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,],[-7,-33,36,-34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-34,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'SEMICOLON':([6,25,26,27,28,29,30,31,32,33,34,35,36,],[11,38,39,40,41,42,43,44,45,46,47,48,49,]),}
+_lr_action_items = {'TEXT':([0,3,5,10,12,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,],[5,10,-34,-33,5,10,5,5,5,5,5,5,5,5,5,5,5,5,10,10,10,10,10,10,10,10,10,10,10,10,]),'TITLE':([0,2,3,4,5,6,8,9,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[7,7,7,-4,-34,-7,-3,7,-33,-5,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'$end':([1,2,4,5,6,8,9,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[0,-1,-4,-34,-7,-3,-2,-33,-5,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'AUTHOR':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,26,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'DESCRIPTION':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,27,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'GENRE':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,28,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'DATE':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,29,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'NOTES':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,30,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'REVIEWS':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,31,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'LINKS':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,32,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'DOWNLOAD':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,33,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'PAGES':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,34,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'GOODREADS':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,35,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'WIKIPEDIA':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,36,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'QUOTES':([5,6,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,38,51,52,53,54,55,56,57,58,59,60,61,62,],[-34,-7,-33,37,-6,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28,-29,-30,-31,-32,]),'SEMICOLON':([7,26,27,28,29,30,31,32,33,34,35,36,37,],[12,39,40,41,42,43,44,45,46,47,48,49,50,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'All':([0,],[1,]),'Suggestions':([0,3,],[2,8,]),'Text':([0,11,38,39,40,41,42,43,44,45,46,47,48,49,],[3,37,50,51,52,53,54,55,56,57,58,59,60,61,]),'Suggestion':([0,2,3,8,],[4,7,4,7,]),'Title':([0,2,3,8,],[5,5,5,5,]),'OtherElements':([5,],[10,]),'OtherElement':([10,],[12,]),'Author':([10,],[13,]),'Description':([10,],[14,]),'Genre':([10,],[15,]),'Date':([10,],[16,]),'Notes':([10,],[17,]),'Reviews':([10,],[18,]),'Links':([10,],[19,]),'Download':([10,],[20,]),'Pages':([10,],[21,]),'Goodreads':([10,],[22,]),'Wikipedia':([10,],[23,]),'Quotes':([10,],[24,]),}
+_lr_goto_items = {'All':([0,],[1,]),'Suggestions':([0,3,],[2,9,]),'Text':([0,12,39,40,41,42,43,44,45,46,47,48,49,50,],[3,38,51,52,53,54,55,56,57,58,59,60,61,62,]),'Suggestion':([0,2,3,9,],[4,8,4,8,]),'Title':([0,2,3,9,],[6,6,6,6,]),'OtherElements':([6,],[11,]),'OtherElement':([11,],[13,]),'Author':([11,],[14,]),'Description':([11,],[15,]),'Genre':([11,],[16,]),'Date':([11,],[17,]),'Notes':([11,],[18,]),'Reviews':([11,],[19,]),'Links':([11,],[20,]),'Download':([11,],[21,]),'Pages':([11,],[22,]),'Goodreads':([11,],[23,]),'Wikipedia':([11,],[24,]),'Quotes':([11,],[25,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -29,36 +29,36 @@ _lr_productions = [
   ("S' -> All","S'",1,None,None,None),
   ('All -> Suggestions','All',1,'p_All','suggestion_yacc.py',7),
   ('All -> Text Suggestions','All',2,'p_All','suggestion_yacc.py',8),
-  ('Suggestions -> Suggestions Suggestion','Suggestions',2,'p_Suggestions','suggestion_yacc.py',16),
-  ('Suggestions -> Suggestion','Suggestions',1,'p_Suggestions','suggestion_yacc.py',17),
-  ('Suggestion -> Title OtherElements','Suggestion',2,'p_Suggestion','suggestion_yacc.py',26),
-  ('OtherElements -> OtherElements OtherElement','OtherElements',2,'p_OtherElements','suggestion_yacc.py',32),
-  ('OtherElements -> <empty>','OtherElements',0,'p_OtherElements','suggestion_yacc.py',33),
-  ('OtherElement -> Author','OtherElement',1,'p_OtherElement','suggestion_yacc.py',42),
-  ('OtherElement -> Description','OtherElement',1,'p_OtherElement','suggestion_yacc.py',43),
-  ('OtherElement -> Genre','OtherElement',1,'p_OtherElement','suggestion_yacc.py',44),
-  ('OtherElement -> Date','OtherElement',1,'p_OtherElement','suggestion_yacc.py',45),
-  ('OtherElement -> Notes','OtherElement',1,'p_OtherElement','suggestion_yacc.py',46),
-  ('OtherElement -> Reviews','OtherElement',1,'p_OtherElement','suggestion_yacc.py',47),
-  ('OtherElement -> Links','OtherElement',1,'p_OtherElement','suggestion_yacc.py',48),
-  ('OtherElement -> Download','OtherElement',1,'p_OtherElement','suggestion_yacc.py',49),
-  ('OtherElement -> Pages','OtherElement',1,'p_OtherElement','suggestion_yacc.py',50),
-  ('OtherElement -> Goodreads','OtherElement',1,'p_OtherElement','suggestion_yacc.py',51),
-  ('OtherElement -> Wikipedia','OtherElement',1,'p_OtherElement','suggestion_yacc.py',52),
-  ('OtherElement -> Quotes','OtherElement',1,'p_OtherElement','suggestion_yacc.py',53),
-  ('Title -> TITLE SEMICOLON Text','Title',3,'p_Title','suggestion_yacc.py',59),
-  ('Author -> AUTHOR SEMICOLON Text','Author',3,'p_Author','suggestion_yacc.py',64),
-  ('Description -> DESCRIPTION SEMICOLON Text','Description',3,'p_Description','suggestion_yacc.py',69),
-  ('Genre -> GENRE SEMICOLON Text','Genre',3,'p_Genre','suggestion_yacc.py',74),
-  ('Date -> DATE SEMICOLON Text','Date',3,'p_Date','suggestion_yacc.py',79),
-  ('Notes -> NOTES SEMICOLON Text','Notes',3,'p_Notes','suggestion_yacc.py',84),
-  ('Reviews -> REVIEWS SEMICOLON Text','Reviews',3,'p_Reviews','suggestion_yacc.py',89),
-  ('Links -> LINKS SEMICOLON Text','Links',3,'p_Links','suggestion_yacc.py',94),
-  ('Download -> DOWNLOAD SEMICOLON Text','Download',3,'p_Download','suggestion_yacc.py',99),
-  ('Pages -> PAGES SEMICOLON Text','Pages',3,'p_Pages','suggestion_yacc.py',104),
-  ('Goodreads -> GOODREADS SEMICOLON Text','Goodreads',3,'p_Goodreads','suggestion_yacc.py',109),
-  ('Wikipedia -> WIKIPEDIA SEMICOLON Text','Wikipedia',3,'p_Wikipedia','suggestion_yacc.py',114),
-  ('Quotes -> QUOTES SEMICOLON Text','Quotes',3,'p_Quotes','suggestion_yacc.py',119),
-  ('Text -> Text TEXT','Text',2,'p_Text','suggestion_yacc.py',124),
-  ('Text -> <empty>','Text',0,'p_Text','suggestion_yacc.py',125),
+  ('Suggestions -> Suggestions Suggestion','Suggestions',2,'p_Suggestions','suggestion_yacc.py',17),
+  ('Suggestions -> Suggestion','Suggestions',1,'p_Suggestions','suggestion_yacc.py',18),
+  ('Suggestion -> Title OtherElements','Suggestion',2,'p_Suggestion','suggestion_yacc.py',27),
+  ('OtherElements -> OtherElements OtherElement','OtherElements',2,'p_OtherElements','suggestion_yacc.py',33),
+  ('OtherElements -> <empty>','OtherElements',0,'p_OtherElements','suggestion_yacc.py',34),
+  ('OtherElement -> Author','OtherElement',1,'p_OtherElement','suggestion_yacc.py',43),
+  ('OtherElement -> Description','OtherElement',1,'p_OtherElement','suggestion_yacc.py',44),
+  ('OtherElement -> Genre','OtherElement',1,'p_OtherElement','suggestion_yacc.py',45),
+  ('OtherElement -> Date','OtherElement',1,'p_OtherElement','suggestion_yacc.py',46),
+  ('OtherElement -> Notes','OtherElement',1,'p_OtherElement','suggestion_yacc.py',47),
+  ('OtherElement -> Reviews','OtherElement',1,'p_OtherElement','suggestion_yacc.py',48),
+  ('OtherElement -> Links','OtherElement',1,'p_OtherElement','suggestion_yacc.py',49),
+  ('OtherElement -> Download','OtherElement',1,'p_OtherElement','suggestion_yacc.py',50),
+  ('OtherElement -> Pages','OtherElement',1,'p_OtherElement','suggestion_yacc.py',51),
+  ('OtherElement -> Goodreads','OtherElement',1,'p_OtherElement','suggestion_yacc.py',52),
+  ('OtherElement -> Wikipedia','OtherElement',1,'p_OtherElement','suggestion_yacc.py',53),
+  ('OtherElement -> Quotes','OtherElement',1,'p_OtherElement','suggestion_yacc.py',54),
+  ('Title -> TITLE SEMICOLON Text','Title',3,'p_Title','suggestion_yacc.py',60),
+  ('Author -> AUTHOR SEMICOLON Text','Author',3,'p_Author','suggestion_yacc.py',65),
+  ('Description -> DESCRIPTION SEMICOLON Text','Description',3,'p_Description','suggestion_yacc.py',70),
+  ('Genre -> GENRE SEMICOLON Text','Genre',3,'p_Genre','suggestion_yacc.py',75),
+  ('Date -> DATE SEMICOLON Text','Date',3,'p_Date','suggestion_yacc.py',80),
+  ('Notes -> NOTES SEMICOLON Text','Notes',3,'p_Notes','suggestion_yacc.py',85),
+  ('Reviews -> REVIEWS SEMICOLON Text','Reviews',3,'p_Reviews','suggestion_yacc.py',90),
+  ('Links -> LINKS SEMICOLON Text','Links',3,'p_Links','suggestion_yacc.py',95),
+  ('Download -> DOWNLOAD SEMICOLON Text','Download',3,'p_Download','suggestion_yacc.py',100),
+  ('Pages -> PAGES SEMICOLON Text','Pages',3,'p_Pages','suggestion_yacc.py',105),
+  ('Goodreads -> GOODREADS SEMICOLON Text','Goodreads',3,'p_Goodreads','suggestion_yacc.py',110),
+  ('Wikipedia -> WIKIPEDIA SEMICOLON Text','Wikipedia',3,'p_Wikipedia','suggestion_yacc.py',115),
+  ('Quotes -> QUOTES SEMICOLON Text','Quotes',3,'p_Quotes','suggestion_yacc.py',120),
+  ('Text -> Text TEXT','Text',2,'p_Text','suggestion_yacc.py',125),
+  ('Text -> TEXT','Text',1,'p_Text','suggestion_yacc.py',126),
 ]

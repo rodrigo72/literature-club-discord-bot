@@ -2,30 +2,18 @@ from discord.ext import commands
 from discord.ext.commands import Context
 
 import asyncio
-from tinydb import TinyDB, Query
-import datetime
-from main import get_embed_from_suggestion
+from tinydb import Query
+from utils import next_month_year, get_embed_from_suggestion
+from suggestion_yacc import parser
 import re
+
+SCAN_LIMIT = 100
 
 
 class Suggestions(commands.Cog, name="suggestions"):
     def __init__(self, bot, database) -> None:
         self.bot = bot
         self.database = database
-        self.month_translation = {
-            'janeiro': 'January',
-            'fevereiro': 'February',
-            'março': 'March',
-            'abril': 'April',
-            'maio': 'May',
-            'junho': 'June',
-            'julho': 'July',
-            'agosto': 'August',
-            'setembro': 'September',
-            'outubro': 'October',
-            'novembro': 'November',
-            'dezembro': 'December'
-        }
 
     async def add_server_if_not_exists(self, server_id: int, server_name: str) -> None:
         server = Query()
@@ -40,46 +28,56 @@ class Suggestions(commands.Cog, name="suggestions"):
 
     @commands.hybrid_command(
         name="s",
-        description="Shows the suggestions made by a user in a specific month. Defaults to the current month and the "
-                    "current user. Optional arguments: month (English or Portuguese) and user (mention), in any order. "
-                    "Example: !s june @rudrigu.",
+        description="Shows the suggestions made by a user in a specific month. "
+                    "Defaults to the next month and the current user. "
+                    "Optional arguments: month (MM/YY) and user (mention), in any order. "
+                    "Example: !s 06/24 @rudrigu.",
     )
     async def s(self, context: Context, arg1=None, arg2=None) -> None:
         await self.add_server_if_not_exists(context.guild.id, context.guild.name)
         mention_pattern = re.compile(r"<@!?(\d+)>")
-        if arg1 is None:  # no arguments
-            user_id = str(context.author.id)  # current user
-            month = datetime.datetime.now().strftime("%B")  # current month
-        elif arg2 is None:  # one argument : month or user
-            match = mention_pattern.match(arg1)
-            if match:
+        month_pattern = re.compile(r"\d{2}/\d{2}")
+
+        # Default values
+        if arg1 is None:
+            user_id = str(context.author.id)
+            month = next_month_year()
+
+        # One argument : month or user
+        elif arg2 is None:
+            if match := mention_pattern.match(arg1):
                 user_id = match.group(1)
-                month = datetime.datetime.now().strftime("%B")
-            else:
+                month = next_month_year()
+            elif month_pattern.match(arg1):
                 user_id = str(context.author.id)
-                arg1 = arg1.lower()
-                month = self.month_translation[arg1] if arg1 in self.month_translation else arg1[0].upper() + arg1[1:]
-        else:  # two arguments : month and user
-            match_arg1 = mention_pattern.match(arg1)
-            if match_arg1:
-                user_id = match_arg1.group(1)
-                arg2 = arg2.lower()
-                month = self.month_translation[arg2] if arg2 in self.month_translation else arg2[0].upper() + arg2[1:]
+                month = arg1
             else:
-                match_arg2 = mention_pattern.match(arg2)
-                if match_arg2:
-                    user_id = match_arg2.group(1)
-                    arg1 = arg1.lower()
-                    month = self.month_translation[arg1] if arg1 in self.month_translation else arg1[0].upper() + arg1[1:]
+                await context.send("Invalid arguments.")
+                return
+
+        # Two arguments : month and user
+        else:
+            if match := mention_pattern.match(arg1):
+                user_id = match.group(1)
+                if month_pattern.match(arg2):
+                    month = arg2
                 else:
                     await context.send("Invalid arguments.")
                     return
+            elif month_pattern.match(arg1):
+                month = arg1
+                if match := mention_pattern.match(arg2):
+                    user_id = match.group(1)
+                else:
+                    await context.send("Invalid arguments.")
+                    return
+            else:
+                await context.send("Invalid arguments.")
+                return
 
         server = Query()
         loop = asyncio.get_running_loop()
         result = await loop.run_in_executor(None, self.database.search, server.server_id == context.guild.id)
-
-        print(result)
 
         if result:
             if month not in result[0]['months']:
@@ -138,15 +136,18 @@ class Suggestions(commands.Cog, name="suggestions"):
 
     @commands.hybrid_command(
         name="month",
-        description="Shows all the suggestions made in a specific month. Defaults to the current month. "
-                    "Optional argument: month (English or Portuguese). Example: !month june.",
+        description="Shows all the suggestions made in a specific month. "
+                    "Defaults to the next month. "
+                    "Optional argument: month (MM/YY). Example: !month 06/24.",
     )
     async def month(self, context: Context, arg=None) -> None:
         if arg is None:
-            month = datetime.datetime.now().strftime("%B")
+            month = next_month_year()
+        elif re.match(r"\d{2}/\d{2}", arg):
+            month = arg
         else:
-            arg = arg.lower()
-            month = self.month_translation[arg] if arg in self.month_translation else arg[0].upper() + arg[1:]
+            await context.send("Invalid argument.")
+            return
 
         server = Query()
         loop = asyncio.get_running_loop()
@@ -166,6 +167,29 @@ class Suggestions(commands.Cog, name="suggestions"):
                 await context.author.send(embed=embed)
 
         await context.send("Suggestions sent to your DMs.")
+
+    @commands.hybrid_command(
+        name="scan",
+        description="Scans the last N messages in the channel for suggestions. "
+                    "Example: !scan 06/24 100",
+    )
+    async def scan(self, context: Context, month, limit: int = None) -> None:
+        if not re.match(r"\d{2}/\d{2}", month):
+            await context.send("Please provide a valid month (MM/YY).")
+            return
+
+        limit = min(limit, SCAN_LIMIT) if limit else SCAN_LIMIT
+        channel = context.channel
+        count = 0
+
+        async for message in channel.history(limit=limit):
+            result = parser.parse(message.content.lower())
+            if result is None:
+                continue
+            await self.bot.add_result_to_db(message, result, month=month)
+            count += 1
+
+        await context.send(f"Added {count} suggestions to the database.")
 
 
 async def setup(bot, database) -> None:

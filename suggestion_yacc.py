@@ -123,10 +123,10 @@ def p_Quotes(p):
 
 def p_Text(p):
     r"""Text : Text TEXT
-             |
+             | TEXT
     """
-    if len(p) == 1:
-        p[0] = []
+    if len(p) == 2:
+        p[0] = [p[1]]
     else:
         p[0] = p[1] + [p[2]]
 
@@ -198,8 +198,9 @@ if __name__ == '__main__':
     > asdasd asd
     > asdasdasd asd
     
-    título: hello again
-    **autora**: asd asd
+    title: hello again
+    **autor**: asd asd
+    pages: 
     """
 
     result = parser.parse(test2.lower())
